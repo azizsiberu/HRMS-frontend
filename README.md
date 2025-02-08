@@ -1,114 +1,70 @@
-# HRMS-frontend
+# Getting Started with Create React App
 
-**HRMS Frontend** adalah bagian antarmuka pengguna dari sistem manajemen sumber daya manusia (HRMS) yang dikembangkan menggunakan **React.js** dan **Material-UI**. Aplikasi ini dirancang untuk membantu perusahaan dalam mengelola karyawan, absensi, penggajian, rekrutmen, dan berbagai aspek HR lainnya.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## 🚀 Tech Stack
+## Available Scripts
 
-### 🏗️ **Frontend**
+In the project directory, you can run:
 
-- **React.js** - Library untuk membangun UI berbasis komponen.
-- **Material-UI** - Framework UI berbasis Material Design untuk styling dan komponen siap pakai.
-- **React Router** - Untuk mengelola navigasi dalam aplikasi.
-- **Axios** - Untuk melakukan HTTP request ke backend.
-- **Context API / Redux** - Untuk manajemen state global.
-- **React Hook Form / Formik** - Untuk pengelolaan form yang lebih efisien.
-- **Yup** - Validasi form schema-based.
-- **Day.js** - Untuk manipulasi tanggal dan waktu.
+### `npm start`
 
-### 🎨 **Styling**
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-- **Material-UI Theme** - Untuk konsistensi desain berdasarkan tema yang dapat dikustomisasi.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-## 📂 Struktur Direktori
+### `npm test`
 
-```plaintext
-hrms-frontend/
-│── public/                # Static assets (favicon, index.html, manifest.json)
-│── src/
-│   ├── api/               # API calls menggunakan Axios
-│   ├── assets/            # Folder untuk assets (images, icons, styles)
-│   ├── components/        # Komponen reusable (Navbar, Sidebar, Buttons)
-│   ├── contexts/          # Context API untuk state management
-│   ├── hooks/             # Custom Hooks
-│   ├── modules/           # Fitur aplikasi berbasis modul
-│   ├── pages/             # Halaman utama aplikasi (Login, Dashboard, Reports)
-│   ├── routes/            # Konfigurasi routing aplikasi
-│   ├── store/             # Redux Store (jika menggunakan Redux)
-│   ├── theme/             # Konfigurasi tema Material-UI
-│   ├── utils/             # Helper functions
-│   ├── App.js             # Root Component aplikasi
-│   ├── index.js           # Entry point aplikasi
-│── .env                   # Konfigurasi environment
-│── package.json           # Dependencies dan scripts
-│── README.md              # Dokumentasi proyek
-```
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-## 📦 Instalasi
+### `npm run build`
 
-### 1️⃣ **Clone Repository**
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-```bash
-git clone https://github.com/azizsiberu/HRMS-frontend.git
-cd HRMS-frontend
-```
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-### 2️⃣ **Install Dependencies**
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-```bash
-npm install
-# atau
-yarn install
-```
+### `npm run eject`
 
-### 3️⃣ **Konfigurasi Environment**
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-Buat file `.env` dan tambahkan konfigurasi berikut:
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-```
-REACT_APP_API_BASE_URL=http://localhost:5000/api
-REACT_APP_THEME=light
-```
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-### 4️⃣ **Jalankan Aplikasi**
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-```bash
-npm start
-# atau
-yarn start
-```
+## Learn More
 
-Akses aplikasi di `http://localhost:3000`
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-## 🔧 Fitur Utama
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-✅ **Manajemen Karyawan** (Profil, dokumen, status kerja)\
-✅ **Rekrutmen & Onboarding** (Lowongan kerja, tracking kandidat)\
-✅ **Absensi & Kehadiran** (Absensi digital, shift management)\
-✅ **Pengelolaan Cuti & Izin** (Pengajuan & approval cuti)\
-✅ **Payroll & Gaji** (Slip gaji, pajak, tunjangan, potongan otomatis)\
-✅ **Penilaian Kinerja** (KPI, OKR, feedback 360°)\
-✅ **Pelatihan & Pengembangan** (E-learning, pelatihan karyawan)\
-✅ **Manajemen Benefit** (Asuransi, dana pensiun, kompensasi)\
-✅ **Laporan & Analitik HR** (Data HR, prediksi turnover)\
-✅ **Employee Self-Service (ESS)** (Profil, pengajuan cuti)\
-✅ **Compliance & Legal HR** (Kontrak kerja, regulasi tenaga kerja)
+### Code Splitting
 
-## 🛠️ Deployment
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-1. **Build aplikasi**
-   ```bash
-   npm run build
-   ```
-2. **Deploy ke platform hosting (Netlify, Vercel, CPanel, dll.)**
+### Analyzing the Bundle Size
 
-## 💡 Kontribusi
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-Kami terbuka untuk kontribusi! Silakan buat pull request atau laporkan masalah di [Issues](https://github.com/azizsiberu/HRMS-frontend/issues).
+### Making a Progressive Web App
 
-## 📄 Lisensi
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-Proyek ini berlisensi di bawah **MIT License**.
+### Advanced Configuration
 
----
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-README ini bisa kamu sesuaikan lebih lanjut sesuai kebutuhan. 🚀
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
