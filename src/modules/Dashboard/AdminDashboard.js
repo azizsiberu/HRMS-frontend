@@ -1,58 +1,56 @@
-// path: src/modules/Dashboard/AdminDashboard.js
+// path: src/modules/Dashboard/Home.js
 
 import React from "react";
 import { Box, Typography, Card, CardActionArea } from "@mui/material";
-import Grid from "@mui/material/Grid2";
+import Grid from "@mui/material/Grid2"; // Menggunakan Grid2 sesuai project files
 import {
   MdPeople,
   MdAccessTime,
   MdOutlineWork,
   MdAttachMoney,
+  MdAssessment,
   MdTrendingUp,
-  MdSupervisorAccount,
-  MdSettings,
 } from "react-icons/md";
 import Logo from "../../assets/images/branding/logo-ajeg.svg";
 
-// Data menu utama untuk admin
-const adminMenu = [
+// Data menu utama HRMS
+const menuItems = [
   {
     icon: <MdPeople size={40} />,
     label: "Manajemen Karyawan",
     link: "/employees",
   },
-  {
-    icon: <MdAccessTime size={40} />,
-    label: "Absensi Karyawan",
-    link: "/attendance",
-  },
+  { icon: <MdAccessTime size={40} />, label: "Absensi", link: "/attendance" },
   {
     icon: <MdOutlineWork size={40} />,
-    label: "Kelola Cuti",
-    link: "/leave-management",
+    label: "Pengajuan Cuti",
+    link: "/leave-requests",
   },
+  { icon: <MdAttachMoney size={40} />, label: "Payroll", link: "/payroll" },
   {
-    icon: <MdAttachMoney size={40} />,
-    label: "Payroll & Penggajian",
-    link: "/payroll",
+    icon: <MdAssessment size={40} />,
+    label: "Evaluasi Kinerja",
+    link: "/performance",
   },
   {
     icon: <MdTrendingUp size={40} />,
     label: "Laporan & Analitik",
     link: "/reports",
   },
-  {
-    icon: <MdSupervisorAccount size={40} />,
-    label: "Manajemen Admin",
-    link: "/admin-management",
-  },
-  { icon: <MdSettings size={40} />, label: "Pengaturan", link: "/settings" },
 ];
 
-const AdminDashboard = () => {
+const Dashboard = () => {
   return (
     <Box
-      sx={{ textAlign: "center", minHeight: "100vh", p: 4, bgcolor: "#F4F6F8" }}
+      sx={{
+        textAlign: "center",
+        minHeight: "100vh",
+        p: 4,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        bgcolor: "#F4F6F8",
+      }}
     >
       {/* Logo */}
       <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
@@ -61,10 +59,11 @@ const AdminDashboard = () => {
 
       {/* Judul */}
       <Typography variant="h4" fontWeight="bold" color="primary">
-        Dashboard Admin
+        Human Resource Management System (HRMS)
       </Typography>
       <Typography variant="body1" sx={{ mt: 1, mb: 4 }}>
-        Halo, Admin! <br /> Kelola sistem HR dengan mudah.
+        Halo, Oktaviani, Selamat Datang! <br />
+        Pilih menu berikut untuk mengelola HR Anda
       </Typography>
 
       {/* Grid Menu */}
@@ -74,8 +73,8 @@ const AdminDashboard = () => {
         justifyContent="center"
         sx={{ maxWidth: "900px" }}
       >
-        {adminMenu.map((item, index) => (
-          <Grid size={{ xs: 6, sm: 4 }} key={index}>
+        {menuItems.map((item, index) => (
+          <Grid size={{ xs: 6, sm: 4, md: 3 }} key={index}>
             <Card
               sx={{
                 textAlign: "center",
@@ -83,9 +82,17 @@ const AdminDashboard = () => {
                 bgcolor: "white",
                 color: "primary.main",
                 borderRadius: 2,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "130px",
                 boxShadow: 2,
                 transition: "0.3s",
-                "&:hover": { transform: "scale(1.05)", boxShadow: 4 },
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: 4,
+                },
               }}
             >
               <CardActionArea
@@ -112,4 +119,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default Dashboard;

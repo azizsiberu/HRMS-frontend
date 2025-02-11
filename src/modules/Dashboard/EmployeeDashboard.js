@@ -1,18 +1,25 @@
-// path: src/modules/Dashboard/EmployeeDashboard.js
+// path: src/modules/Dashboard/Home.js
 
 import React from "react";
 import { Box, Typography, Card, CardActionArea } from "@mui/material";
-import Grid from "@mui/material/Grid2";
+import Grid from "@mui/material/Grid2"; // Menggunakan Grid2 sesuai project files
 import {
+  MdPeople,
   MdAccessTime,
   MdOutlineWork,
   MdAttachMoney,
   MdAssessment,
+  MdTrendingUp,
 } from "react-icons/md";
 import Logo from "../../assets/images/branding/logo-ajeg.svg";
 
-// Data menu utama untuk karyawan
-const employeeMenu = [
+// Data menu utama HRMS
+const menuItems = [
+  {
+    icon: <MdPeople size={40} />,
+    label: "Manajemen Karyawan",
+    link: "/employees",
+  },
   { icon: <MdAccessTime size={40} />, label: "Absensi", link: "/attendance" },
   {
     icon: <MdOutlineWork size={40} />,
@@ -25,12 +32,25 @@ const employeeMenu = [
     label: "Evaluasi Kinerja",
     link: "/performance",
   },
+  {
+    icon: <MdTrendingUp size={40} />,
+    label: "Laporan & Analitik",
+    link: "/reports",
+  },
 ];
 
-const EmployeeDashboard = () => {
+const Dashboard = () => {
   return (
     <Box
-      sx={{ textAlign: "center", minHeight: "100vh", p: 4, bgcolor: "#F4F6F8" }}
+      sx={{
+        textAlign: "center",
+        minHeight: "100vh",
+        p: 4,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        bgcolor: "#F4F6F8",
+      }}
     >
       {/* Logo */}
       <Box sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
@@ -39,10 +59,11 @@ const EmployeeDashboard = () => {
 
       {/* Judul */}
       <Typography variant="h4" fontWeight="bold" color="primary">
-        Dashboard Karyawan
+        Human Resource Management System (HRMS)
       </Typography>
       <Typography variant="body1" sx={{ mt: 1, mb: 4 }}>
-        Halo, Oktaviani! <br /> Berikut adalah aktivitas kerja Anda.
+        Halo, Oktaviani, Selamat Datang! <br />
+        Pilih menu berikut untuk mengelola HR Anda
       </Typography>
 
       {/* Grid Menu */}
@@ -52,8 +73,8 @@ const EmployeeDashboard = () => {
         justifyContent="center"
         sx={{ maxWidth: "900px" }}
       >
-        {employeeMenu.map((item, index) => (
-          <Grid size={{ xs: 6, sm: 4 }} key={index}>
+        {menuItems.map((item, index) => (
+          <Grid size={{ xs: 6, sm: 4, md: 3 }} key={index}>
             <Card
               sx={{
                 textAlign: "center",
@@ -61,9 +82,17 @@ const EmployeeDashboard = () => {
                 bgcolor: "white",
                 color: "primary.main",
                 borderRadius: 2,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "130px",
                 boxShadow: 2,
                 transition: "0.3s",
-                "&:hover": { transform: "scale(1.05)", boxShadow: 4 },
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: 4,
+                },
               }}
             >
               <CardActionArea
@@ -86,34 +115,8 @@ const EmployeeDashboard = () => {
           </Grid>
         ))}
       </Grid>
-
-      {/* Rekapan Absensi */}
-      <Box
-        sx={{
-          mt: 5,
-          p: 3,
-          bgcolor: "white",
-          borderRadius: 2,
-          boxShadow: 2,
-          maxWidth: "800px",
-          mx: "auto",
-        }}
-      >
-        <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}>
-          Rekapan Kehadiran Anda
-        </Typography>
-        <Typography variant="body1">
-          Total Masuk: <strong>20 Hari</strong>
-        </Typography>
-        <Typography variant="body1">
-          Total Cuti: <strong>3 Hari</strong>
-        </Typography>
-        <Typography variant="body1">
-          Total Tidak Hadir: <strong>2 Hari</strong>
-        </Typography>
-      </Box>
     </Box>
   );
 };
 
-export default EmployeeDashboard;
+export default Dashboard;

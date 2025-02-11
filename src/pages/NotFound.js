@@ -22,7 +22,7 @@ const NotFound = () => {
         <MdError size={60} color="red" />
 
         {/* Pesan 404 */}
-        <Typography variant="h3" color="error" gutterBottom>
+        <Typography variant="h3" color="error" fontWeight={"bold"} gutterBottom>
           404 - Halaman Tidak Ditemukan
         </Typography>
         <Typography variant="body1" sx={{ mb: 3 }}>
@@ -34,9 +34,9 @@ const NotFound = () => {
           variant="contained"
           color="primary"
           startIcon={<MdHome />}
-          onClick={() => navigate("/")}
+          onClick={() => navigate(-1)}
         >
-          Kembali ke Beranda
+          Kembali
         </Button>
       </Box>
     </Container>
