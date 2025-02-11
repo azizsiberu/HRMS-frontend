@@ -71,7 +71,7 @@ const Login = () => {
         {/* Need Help di kanan */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Typography variant="body2" color="text.secondary">
-            Need help?
+            Butuh Bantuan?
           </Typography>
           <IoMdHelpCircleOutline size={20} color="#555" />
         </Box>

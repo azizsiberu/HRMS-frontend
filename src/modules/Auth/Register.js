@@ -77,7 +77,7 @@ const Register = () => {
         {/* Need Help di kanan */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Typography variant="body2" color="text.secondary">
-            Need help?
+            Butuh Bantuan?
           </Typography>
           <IoMdHelpCircleOutline size={20} color="#555" />
         </Box>
@@ -102,7 +102,7 @@ const Register = () => {
             Buat Akun Anda
           </Typography>
           <Typography variant="body2" sx={{ mb: 3, color: "gray" }}>
-            Bergabunglah dengan kami dan mulai pengalaman baru!
+            Jika sudah dapat konfirmasi dari HR Admin, silakan daftar akun kamu
           </Typography>
           <img
             src={registerIllustration}
