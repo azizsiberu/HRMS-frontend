@@ -1,27 +1,33 @@
-# HRMS-frontend
+# HRMS Frontend
 
-**HRMS Frontend** adalah bagian antarmuka pengguna dari sistem manajemen sumber daya manusia (HRMS) yang dikembangkan menggunakan **React.js** dan **Material-UI**. Aplikasi ini dirancang untuk membantu perusahaan dalam mengelola karyawan, absensi, penggajian, rekrutmen, dan berbagai aspek HR lainnya.
+## 📌 Deskripsi
+
+**HRMS Frontend** adalah bagian antarmuka pengguna dari sistem manajemen sumber daya manusia (HRMS) yang dikembangkan menggunakan **React.js** dan **Material-UI**. Aplikasi ini dirancang untuk membantu perusahaan dalam mengelola karyawan, absensi, penggajian, rekrutmen, dan berbagai aspek HR lainnya dengan akses berbasis role (RBAC).
+
+---
 
 ## 🚀 Tech Stack
 
-### 🏗️ **Frontend**
+### **Frontend**
 
 - **React.js** - Library untuk membangun UI berbasis komponen.
-- **Material-UI** - Framework UI berbasis Material Design untuk styling dan komponen siap pakai.
-- **React Router** - Untuk mengelola navigasi dalam aplikasi.
-- **Axios** - Untuk melakukan HTTP request ke backend.
-- **Context API / Redux** - Untuk manajemen state global.
-- **React Hook Form / Formik** - Untuk pengelolaan form yang lebih efisien.
+- **Material-UI** - Framework UI berbasis Material Design.
+- **React Router** - Mengelola navigasi dalam aplikasi.
+- **Axios** - Untuk komunikasi dengan backend.
+- **Context API / Redux** - Manajemen state global.
+- **React Hook Form / Formik** - Pengelolaan form yang lebih efisien.
 - **Yup** - Validasi form schema-based.
-- **Day.js** - Untuk manipulasi tanggal dan waktu.
+- **Day.js** - Manipulasi tanggal dan waktu.
 
-### 🎨 **Styling**
+### **Styling**
 
-- **Material-UI Theme** - Untuk konsistensi desain berdasarkan tema yang dapat dikustomisasi.
+- **Material-UI Theme** - Konsistensi desain berdasarkan tema yang dapat dikustomisasi.
+
+---
 
 ## 📂 Struktur Direktori
 
-```plaintext
+```
 hrms-frontend/
 │── public/                # Static assets (favicon, index.html, manifest.json)
 │── src/
@@ -31,7 +37,7 @@ hrms-frontend/
 │   ├── contexts/          # Context API untuk state management
 │   ├── hooks/             # Custom Hooks
 │   ├── modules/           # Fitur aplikasi berbasis modul
-│   ├── pages/             # Halaman utama aplikasi (Login, Dashboard, Reports)
+│   ├── pages/             # Halaman utama aplikasi
 │   ├── routes/            # Konfigurasi routing aplikasi
 │   ├── store/             # Redux Store (jika menggunakan Redux)
 │   ├── theme/             # Konfigurasi tema Material-UI
@@ -43,16 +49,18 @@ hrms-frontend/
 │── README.md              # Dokumentasi proyek
 ```
 
-## 📦 Instalasi
+---
 
-### 1️⃣ **Clone Repository**
+## 🔧 Instalasi
+
+### **1️⃣ Clone Repository**
 
 ```bash
-git clone https://github.com/azizsiberu/HRMS-frontend.git
-cd HRMS-frontend
+git clone https://github.com/your-repo/hrms-frontend.git
+cd hrms-frontend
 ```
 
-### 2️⃣ **Install Dependencies**
+### **2️⃣ Install Dependencies**
 
 ```bash
 npm install
@@ -60,16 +68,16 @@ npm install
 yarn install
 ```
 
-### 3️⃣ **Konfigurasi Environment**
+### **3️⃣ Konfigurasi Environment**
 
 Buat file `.env` dan tambahkan konfigurasi berikut:
 
-```
+```env
 REACT_APP_API_BASE_URL=http://localhost:5000/api
 REACT_APP_THEME=light
 ```
 
-### 4️⃣ **Jalankan Aplikasi**
+### **4️⃣ Jalankan Aplikasi**
 
 ```bash
 npm start
@@ -79,19 +87,31 @@ yarn start
 
 Akses aplikasi di `http://localhost:3000`
 
-## 🔧 Fitur Utama
+---
 
-✅ **Manajemen Karyawan** (Profil, dokumen, status kerja)\
-✅ **Rekrutmen & Onboarding** (Lowongan kerja, tracking kandidat)\
-✅ **Absensi & Kehadiran** (Absensi digital, shift management)\
-✅ **Pengelolaan Cuti & Izin** (Pengajuan & approval cuti)\
-✅ **Payroll & Gaji** (Slip gaji, pajak, tunjangan, potongan otomatis)\
-✅ **Penilaian Kinerja** (KPI, OKR, feedback 360°)\
-✅ **Pelatihan & Pengembangan** (E-learning, pelatihan karyawan)\
-✅ **Manajemen Benefit** (Asuransi, dana pensiun, kompensasi)\
-✅ **Laporan & Analitik HR** (Data HR, prediksi turnover)\
-✅ **Employee Self-Service (ESS)** (Profil, pengajuan cuti)\
-✅ **Compliance & Legal HR** (Kontrak kerja, regulasi tenaga kerja)
+## 🔑 Role-Based Access Control (RBAC)
+
+Aplikasi ini memiliki sistem hak akses berdasarkan **Role**:
+| **Role** | **Akses** |
+|-----------------|-----------|
+| **CEO** | Hanya melihat laporan, tidak bisa mengedit |
+| **Manager (HR, Finance)** | Mengelola data karyawan, payroll, izin, klaim |
+| **Supervisor** | Mendelegasikan tugas, mengevaluasi tim |
+| **Employee** | Absensi, melihat tugas, mengajukan izin |
+
+---
+
+## 📄 Fitur Utama
+
+✅ **Manajemen Karyawan** (Profil, dokumen, status kerja)
+✅ **Absensi & Kehadiran** (Absensi digital berbasis foto & lokasi GPS)
+✅ **Payroll & Gaji** (Slip gaji, pajak, tunjangan, potongan otomatis)
+✅ **Penilaian Kinerja** (KPI, OKR, feedback 360°)
+✅ **Employee Self-Service (ESS)** (Profil, pengajuan cuti, slip gaji)
+✅ **Role-Based Access Control (RBAC)** (Hak akses berdasarkan peran)
+✅ **Laporan & Analitik HR** (Data HR, prediksi turnover)
+
+---
 
 ## 🛠️ Deployment
 
@@ -101,14 +121,14 @@ Akses aplikasi di `http://localhost:3000`
    ```
 2. **Deploy ke platform hosting (Netlify, Vercel, CPanel, dll.)**
 
+---
+
 ## 💡 Kontribusi
 
-Kami terbuka untuk kontribusi! Silakan buat pull request atau laporkan masalah di [Issues](https://github.com/azizsiberu/HRMS-frontend/issues).
+Kami terbuka untuk kontribusi! Silakan buat pull request atau laporkan masalah di **Issues**.
+
+---
 
 ## 📄 Lisensi
 
 Proyek ini berlisensi di bawah **MIT License**.
-
----
-
-README ini bisa kamu sesuaikan lebih lanjut sesuai kebutuhan. 🚀
