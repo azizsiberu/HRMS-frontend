@@ -1,13 +1,18 @@
+// path: src/routes/RoleRoutes.js
+import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
-const RoleRoute = ({ allowedRoles }) => {
-  const userRole = localStorage.getItem("userRole"); // Ambil role dari localStorage
+const RoleRoutes = ({ allowedRoles }) => {
+  const { user, loading } = useAuth();
 
-  return allowedRoles.includes(userRole) ? (
+  if (loading) return <div>Loading...</div>;
+
+  return user && allowedRoles.includes(user.role) ? (
     <Outlet />
   ) : (
-    <Navigate to="/dashboard" />
+    <Navigate to="/unauthorized" replace />
   );
 };
 
-export default RoleRoute;
+export default RoleRoutes;

@@ -1,9 +1,9 @@
 // path: src/modules/Auth/Register.js
-
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
 import {
   TextField,
   Button,
@@ -11,10 +11,11 @@ import {
   Box,
   InputAdornment,
   IconButton,
+  Alert,
 } from "@mui/material";
 import { MdPersonAdd, MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { IoMdHelpCircleOutline } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 import registerIllustration from "../../assets/images/illustrations/Register.svg";
 import Logo from "../../assets/images/branding/logo-ajeg.svg";
 
@@ -34,6 +35,11 @@ const registerSchema = yup.object().shape({
 
 const Register = () => {
   const navigate = useNavigate();
+  const { handleRegister } = useAuth();
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -42,13 +48,22 @@ const Register = () => {
     resolver: yupResolver(registerSchema),
   });
 
-  // State untuk mengontrol visibilitas password
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const onSubmit = async (data) => {
+    try {
+      await handleRegister({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      });
+      navigate("/login"); // Redirect ke halaman login setelah sukses
+    } catch (error) {
+      setErrorMessage(error.message || "Registrasi gagal, coba lagi.");
+    }
+  };
 
   return (
     <Box sx={{ height: "100vh", display: "flex", flexDirection: "column" }}>
-      {/* Header di bagian atas */}
+      {/* Header */}
       <Box
         sx={{
           position: "absolute",
@@ -62,19 +77,16 @@ const Register = () => {
           py: 2,
         }}
       >
-        {/* Logo di kiri */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <img
             src={Logo}
             alt="Logo"
             style={{ width: "40px", borderRadius: 4 }}
           />
-          <Typography variant="body1" fontWeight="bold" sx={{ ml: 1 }}>
+          <Typography variant="body1" fontWeight="bold">
             Ajeg Furniture
           </Typography>
         </Box>
-
-        {/* Need Help di kanan */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Typography variant="body2" color="text.secondary">
             Butuh Bantuan?
@@ -83,9 +95,8 @@ const Register = () => {
         </Box>
       </Box>
 
-      {/* Container utama dengan Box kiri dan kanan */}
       <Box sx={{ display: "flex", flexGrow: 1 }}>
-        {/* Box kiri - Ilustrasi (disembunyikan di xs) */}
+        {/* Ilustrasi */}
         <Box
           sx={{
             flex: 1,
@@ -111,7 +122,7 @@ const Register = () => {
           />
         </Box>
 
-        {/* Box kanan - Form Registrasi */}
+        {/* Form Registrasi */}
         <Box
           sx={{
             flex: 1,
@@ -131,12 +142,15 @@ const Register = () => {
               Sudah punya akun? <a href="/login">Masuk di sini</a>
             </Typography>
 
+            {errorMessage && (
+              <Alert severity="error" sx={{ mb: 2 }}>
+                {errorMessage}
+              </Alert>
+            )}
+
             <Box
               component="form"
-              onSubmit={handleSubmit((data) => {
-                console.log("Register Data:", data);
-                navigate("/login"); // Redirect ke login setelah registrasi
-              })}
+              onSubmit={handleSubmit(onSubmit)}
               noValidate
               sx={{ mt: 4 }}
             >
@@ -162,7 +176,7 @@ const Register = () => {
                 sx={{ mb: 2 }}
               />
 
-              {/* Input Password dengan Toggle Visibility */}
+              {/* Input Password */}
               <TextField
                 label="Password"
                 type={showPassword ? "text" : "password"}

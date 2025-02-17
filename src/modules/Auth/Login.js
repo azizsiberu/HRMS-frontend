@@ -1,8 +1,9 @@
-//path: src/modules/Auth/Login.js
+// path: src/modules/Auth/Login.js
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
 import {
   TextField,
   Button,
@@ -10,9 +11,11 @@ import {
   Box,
   IconButton,
   InputAdornment,
+  Alert,
 } from "@mui/material";
 import { MdLogin, MdVisibility, MdVisibilityOff } from "react-icons/md";
 import { IoMdHelpCircleOutline } from "react-icons/io";
+import { useAuth } from "../../hooks/useAuth";
 import loginIllustration from "../../assets/images/illustrations/Login.svg";
 import Logo from "../../assets/images/branding/logo-ajeg.svg";
 
@@ -26,7 +29,10 @@ const loginSchema = yup.object().shape({
 });
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { handleLogin } = useAuth(); // Menggunakan fungsi login dari AuthContext
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const {
     register,
@@ -37,13 +43,17 @@ const Login = () => {
   });
 
   // Fungsi submit
-  const onSubmit = (data) => {
-    console.log("Login Data:", data);
+  const onSubmit = async (data) => {
+    try {
+      await handleLogin(data.email, data.password);
+      navigate("/dashboard"); // Redirect setelah login berhasil
+    } catch (error) {
+      setErrorMessage(error.message || "Login gagal, coba lagi.");
+    }
   };
 
   return (
     <Box sx={{ height: "100vh", display: "flex", flexDirection: "column" }}>
-      {/* Header di bagian atas, posisi top */}
       <Box
         sx={{
           position: "absolute",
@@ -57,18 +67,16 @@ const Login = () => {
           py: 2,
         }}
       >
-        {/* Logo di kiri */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <img
             src={Logo}
             alt="Logo"
             style={{ width: "40px", borderRadius: 4 }}
           />
-          <Typography variant="body1" fontWeight="bold" sx={{ ml: 1 }}>
+          <Typography variant="body1" fontWeight="bold">
             Ajeg Furniture
           </Typography>
         </Box>
-        {/* Need Help di kanan */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Typography variant="body2" color="text.secondary">
             Butuh Bantuan?
@@ -77,9 +85,7 @@ const Login = () => {
         </Box>
       </Box>
 
-      {/* Container utama dengan Box kiri dan kanan */}
       <Box sx={{ display: "flex", flexGrow: 1 }}>
-        {/* Box kiri - Ilustrasi (disembunyikan di xs) */}
         <Box
           sx={{
             flex: 1,
@@ -105,7 +111,6 @@ const Login = () => {
           />
         </Box>
 
-        {/* Box kanan - Form Login */}
         <Box
           sx={{
             flex: 1,
@@ -125,13 +130,18 @@ const Login = () => {
               Belum punya akun? <a href="/register">Daftar di sini</a>
             </Typography>
 
+            {errorMessage && (
+              <Alert severity="error" sx={{ mb: 2 }}>
+                {errorMessage}
+              </Alert>
+            )}
+
             <Box
               component="form"
               onSubmit={handleSubmit(onSubmit)}
               noValidate
               sx={{ mt: 4 }}
             >
-              {/* Input Email */}
               <TextField
                 label="Email address"
                 size="small"
@@ -142,8 +152,6 @@ const Login = () => {
                 helperText={errors.email?.message}
                 sx={{ mb: 2 }}
               />
-
-              {/* Input Password dengan Toggle Visibility */}
               <TextField
                 label="Password"
                 type={showPassword ? "text" : "password"}
@@ -169,7 +177,6 @@ const Login = () => {
               />
             </Box>
 
-            {/* Forgot Password */}
             <Typography
               variant="body2"
               sx={{ textAlign: "right", mb: 2, cursor: "pointer" }}
@@ -178,7 +185,6 @@ const Login = () => {
               Lupa password?
             </Typography>
 
-            {/* Tombol Login */}
             <Button
               type="submit"
               variant="contained"
